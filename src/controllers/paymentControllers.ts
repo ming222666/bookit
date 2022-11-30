@@ -30,8 +30,10 @@ const stripeCheckoutSession = async (req: NextApiRequest, res: NextApiResponse):
   // Get stripe checkout session
   const session = await stripe.checkout.sessions.create({
     payment_method_types: ['card'],
-    success_url: `${urlObject.protocol}//${urlObject.host}/bookings/me`,
-    cancel_url: `${urlObject.protocol}//${urlObject.host}/rooms/${room._id}`,
+    // success_url: `${urlObject.protocol}//${urlObject.host}/bookings/me`,
+    // cancel_url: `${urlObject.protocol}//${urlObject.host}/rooms/${room._id}`,
+    success_url: `https://bookit-delta.vercel.app/bookings/me`,
+    cancel_url: `https://bookit-delta.vercel.app/rooms/${room._id}`,
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     customer_email: (req as any).user.email,
     client_reference_id: req.query.roomId,
